@@ -78,6 +78,13 @@
       @closeModal="openDialog = false"
       @onSave="addCard($event)"
     />
+    <ConfirmationDialog
+      :dialog="isConfirmationDialogOpen"
+      @disagree="isConfirmationDialogOpen = false"
+      @agree="
+        cancelCardAction(selectedCard), (isConfirmationDialogOpen = false)
+      "
+    ></ConfirmationDialog>
   </v-container>
 </template>
 <script>
@@ -86,6 +93,7 @@ import Card from "../components/Card.vue";
 import Footer from "../components/Footer.vue";
 import CardActions from "../components/CardActions.vue";
 import AddCard from "../components/AddCard.vue";
+import ConfirmationDialog from "../components/ConfirmationDialog.vue";
 import { mapState, mapActions } from "vuex";
 
 export default {
@@ -96,12 +104,14 @@ export default {
     Footer,
     CardActions,
     AddCard,
+    ConfirmationDialog,
   },
   data: () => ({
     openDialog: false,
     snackbar: false,
     carouselNumber: 0,
     selectedCard: {},
+    isConfirmationDialogOpen: false,
   }),
   computed: {
     freezeText() {
@@ -139,7 +149,7 @@ export default {
         : this.freezeCardAction(this.selectedCard);
     },
     cancelCard() {
-      this.cancelCardAction(this.selectedCard);
+      this.isConfirmationDialogOpen = true;
     },
   },
 };

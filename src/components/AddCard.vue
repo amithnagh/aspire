@@ -50,33 +50,9 @@ export default {
     valid: true,
     firstName: "",
     lastName: "",
-    modal: false,
     nameRules: [
       (v) => !!v || "Name is required",
       (v) => v.length <= 10 || "Name must be less than 10 characters",
-    ],
-    cardNumberRules: [
-      (v) => !!v || "Card Number is required",
-      (v) => v.length == 16 || "Card number must be 16 characters",
-      (v) => {
-        const pattern = /^4[0-9]{12}(?:[0-9]{3})?$/;
-        return pattern.test(v) || "card number should start with 4.";
-      },
-    ],
-    dateRules: [
-      (v) => !!v || "Card expiry month and year required",
-      (v) => {
-        const currentDate = new Date();
-        const currentYear = currentDate.getFullYear();
-        const currentMonth = currentDate.getMonth();
-        if (v.split("-")[0] < currentYear) {
-          return "Card already expired";
-        } else if (v.split("-")[1] < currentMonth + 1) {
-          return "Card already expired";
-        } else {
-          return true;
-        }
-      },
     ],
   }),
   methods: {
