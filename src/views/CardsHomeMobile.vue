@@ -31,7 +31,7 @@
         :show-arrows="false"
         hide-delimiter-background
         delimiter-icon="mdi-minus"
-        height="265"
+        height="290"
       >
         <v-carousel-item v-for="(item, i) in cards" :key="i">
           <Card :card="item"

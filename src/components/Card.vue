@@ -1,33 +1,45 @@
 <template>
-  <v-container class="card" :class="{ frozen: card.cardFreezed }">
-    <v-row
-      ><v-col class="card-name">
-        <v-img
-          class="card-name-width"
-          :src="require(`../assets/${card.cardName}`)"
-        ></v-img></v-col
-    ></v-row>
-    <v-row
-      ><v-col class="name">{{ fullName }}</v-col></v-row
-    >
-    <v-row class="card-number"
-      ><v-col>{{ card.cardNumber }}</v-col></v-row
-    >
-    <v-row class="card-expiry">
-      <v-col
-        >Thru: {{ card.cardExpiryMonth }}/{{ card.cardExpiryYear % 100 }}</v-col
+  <div>
+    <v-container>
+      <v-row>
+        <v-col class="tag">
+          <v-img class="img-width" :src="require('@/assets/eye.svg')"></v-img>
+          <span class="span-font">Show card number</span>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-container class="card" :class="{ frozen: card.cardFreezed }">
+      <v-row
+        ><v-col class="card-name">
+          <v-img
+            class="card-name-width"
+            :src="require(`../assets/${card.cardName}`)"
+          ></v-img></v-col
+      ></v-row>
+      <v-row
+        ><v-col class="name">{{ fullName }}</v-col></v-row
       >
-      <v-col>CVV: {{ card.cvv }}</v-col>
-    </v-row>
-    <v-row>
-      <v-col class="card-type"
-        ><v-img
-          class="card-name-width"
-          :src="require('@/assets/visalogo.svg')"
-        ></v-img
-      ></v-col>
-    </v-row>
-  </v-container>
+      <v-row class="card-number"
+        ><v-col>{{ card.cardNumber }}</v-col></v-row
+      >
+      <v-row class="card-expiry">
+        <v-col
+          >Thru: {{ card.cardExpiryMonth }}/{{
+            card.cardExpiryYear % 100
+          }}</v-col
+        >
+        <v-col>CVV: {{ card.cvv }}</v-col>
+      </v-row>
+      <v-row>
+        <v-col class="card-type"
+          ><v-img
+            class="card-name-width"
+            :src="require('@/assets/visalogo.svg')"
+          ></v-img
+        ></v-col>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 <script>
 export default {
@@ -51,6 +63,29 @@ export default {
 };
 </script>
 <style lang="scss">
+.img-width {
+  float: left;
+  width: 15px;
+  height: 10px;
+  position: absolute;
+  top: 7px;
+}
+.span-font {
+  font-size: 0.75rem;
+  position: absolute;
+  top: 3px;
+  left: 32px;
+  color: #01d167;
+}
+.tag {
+  width: 150px;
+  height: 20px;
+  position: absolute;
+  background-color: #ffffff;
+  border-radius: 2px;
+  right: 18px;
+  top: 3px;
+}
 .card {
   height: 13.75rem;
   width: 22.375rem;
